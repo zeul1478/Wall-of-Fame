@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wall of Fame | Creative IT Journey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --accent-color: #2dd4bf;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --transition: all 0.3s ease;
+            --nature-green: #10b981;
+            --sky-blue: #0ea5e9;
+        }
+        
+        .avatar-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+    border: 4px solid white;
+    flex-shrink: 0;
+}
+
+.avatar-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        
+        .header-content {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px var(--shadow-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .profile-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px var(--shadow-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--nature-green), var(--sky-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .avatar i {
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .profile-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: var(--nature-green);
+        }
+        
+        .profile-info p {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .hobbies-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .hobby-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .hobby-icon {
+            background: linear-gradient(135deg, var(--nature-green), var(--sky-blue));
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
+        }
+        
+        .hobby-icon i {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .hobby-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--nature-green);
+        }
+        
+        .hobby-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .photo-container {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .photo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .location-note {
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid var(--nature-green);
+        }
+        
+        .location-note i {
+            color: var(--nature-green);
+            margin-right: 10px;
+        }
+        
+        .journey-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px var(--shadow-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+        
+        .journey-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .journey-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .journey-card h3 i {
+            margin-right: 15px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 0 0 4px rgba(106, 17, 203, 0.2);
+        }
+        
+        .timeline-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+        
+        .timeline-item p {
+            color: #666;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer-text {
+            margin-top: 10px;
+            color: #666;
+        }
+        
+        .highlight {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .nature-highlight {
+            color: var(--nature-green);
+            font-weight: 600;
+        }
+        
+        /* Responsive adjustments for photos */
+        @media (max-width: 768px) {
+            .photo-grid {
+                gap: 12px;
+            }
+            
+            .photo-container {
+                aspect-ratio: 1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .photo-container:last-child {
+                grid-column: span 2;
+                max-width: 50%;
+                margin: 0 auto;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Wall of Fame</h1>
+                <p class="subtitle">From Photography to Coding: A Creative Journey</p>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="avatar-circle">
+                        <img src="photo4.jpg" alt="My Photo" class="avatar-photo">
+                    </div>
+                    <div class="profile-info">
+                        <h2>Nature Enthusiast & Tech Explorer</h2>
+                        <p>Onewheel Rider • Outdoor Adventurer • Nature Lover</p>
+                    </div>
+                </div>
+                
+                <div class="hobbies-section">
+                    <div class="hobby-item">
+                        <div class="hobby-icon">
+                            <i class="fas fa-snowboarding"></i>
+                        </div>
+                        <div class="hobby-content">
+                            <h4>Onewheel Riding</h4>
+                            <p>My favorite way to explore and enjoy the outdoors. There's nothing like the feeling of gliding through nature on my Onewheel, whether it's along beach paths or through parks.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hobby-item">
+                        <div class="hobby-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <div class="hobby-content">
+                            <h4>Nature Connection</h4>
+                            <p>I'm deeply connected to nature and prefer the tranquility of mountains and forests over city life. Even living in Fort Lauderdale, I seek out every opportunity to be in natural surroundings.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hobby-item">
+                        <div class="hobby-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="hobby-content">
+                            <h4>Outdoor Photography</h4>
+                            <p>Combining my love for photography with nature adventures. Capturing landscapes, wildlife, and outdoor moments brings me joy and creative fulfillment.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="photo-grid">
+                    <div class="photo-container">
+                        <img src="photo1.jpg" alt="My Onewheel Adventure">
+                    </div>
+                    <div class="photo-container">
+                        <img src="photo2.jpg" alt="Nature Photography">
+                    </div>
+                    <div class="photo-container">
+                        <img src="photo3.jpg" alt="Outdoor Moments">
+                    </div>
+                </div>
+                
+                <div class="location-note">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <strong>Fort Lauderdale, Florida</strong> - Living in the sunshine state but always dreaming of mountain vistas and forest trails.
+                </div>
+            </div>
+            
+            <div class="journey-card">
+                <h3><i class="fas fa-road"></i> My Creative Journey</h3>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Photography Foundation</h4>
+                        <p>Started with traditional photography, learning composition, lighting, and visual storytelling. Developed a keen eye for detail and aesthetics.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Digital Visual Arts</h4>
+                        <p>Transitioned to digital, mastering Adobe Creative Suite for photo and video editing. Fell in love with creating visuals on computers.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Web Design & Development</h4>
+                        <p>Began building beautiful websites with Framer, learning to blend aesthetics with functionality in the digital space.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Coding & AI Exploration</h4>
+                        <p>Started experimenting with coding, leveraging AI tools to build small applications and dive deeper into the IT world.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <h3>Ready to Share More in Our Meeting!</h3>
+            <p class="footer-text">Looking forward to connecting with everyone and sharing more about my journey from <span class="nature-highlight">nature adventures</span> to <span class="highlight">tech exploration</span>.</p>
+        </footer>
+    </div>
+</body>
+</html>
